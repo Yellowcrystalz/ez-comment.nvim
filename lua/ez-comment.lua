@@ -1,9 +1,16 @@
 local M = {}
 
+
 function M.setup()
-    vim.api.nvim_create_user_command("Test", function()
-        print("Test!")
-    end, {})
+    -- Place Holder Keybind
+    vim.keymap.set({"n"}, "<leader>cc", comment)
 end
+
+
+function comment()
+    local row = vim.api.nvim_win_get_cursor(0)[1]
+    vim.api.nvim_buf_set_text(0, row - 1, 0, row - 1, 0, {"-- "})
+end
+
 
 return M
