@@ -6,7 +6,7 @@ local function check_comment(comment_symbol)
     local line_num = line_pos[2]
 
     local line = vim.api.nvim_buf_get_lines(0, line_num - 1, line_num, false)[1]
-    local subline = line:sub(1, 3)
+    local subline = line:sub(1, #comment_symbol)
 
     if subline == comment_symbol then
         return true
