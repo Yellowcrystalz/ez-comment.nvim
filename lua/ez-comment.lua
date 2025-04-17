@@ -58,7 +58,7 @@ local function uncomment(start_line, end_line, comment_symbol)
 end
 
 
-function ez_comment()
+local function ez_comment()
     local start_pos = vim.fn.getpos("v")
     local end_pos = vim.fn.getpos(".")
 
@@ -79,9 +79,10 @@ function ez_comment()
 end
 
 
-function M.setup()
-    -- Place Holder Keybind
-    vim.keymap.set({ "v" }, "<leader>/", ez_comment)
+function M.setup(keybind)
+    -- <leader>/ is the default keybind
+    keybind = keybind or "<leader>/"
+    vim.keymap.set({ "v" }, keybind, ez_comment)
 end
 
 
