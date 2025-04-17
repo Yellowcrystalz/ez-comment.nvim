@@ -72,7 +72,6 @@ end
 function M.setup()
     -- Place Holder Keybind
     vim.keymap.set({ "v" }, "<leader>/", ez_comment)
-    vim.keymap.set({ "n" }, "<leader>cc", check_language)
 end
 
 
