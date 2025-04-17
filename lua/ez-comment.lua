@@ -8,11 +8,7 @@ local function check_comment(comment_symbol)
     local line = vim.api.nvim_buf_get_lines(0, line_num - 1, line_num, false)[1]
     local subline = line:sub(1, #comment_symbol)
 
-    if subline == comment_symbol then
-        return true
-    else
-        return false
-    end
+    return subline == comment_symbol
 end
 
 
@@ -20,17 +16,31 @@ local function check_language()
     local file_name = vim.api.nvim_buf_get_name(0)
     local ext = file_name:match("^.+%.([^.]+)$")
 
-    local comment_symbol = ""
+    local symbol_table = {
+        c       = "// ",    -- c
+        cc      = "// ",    -- c++
+        cpp     = "// ",    -- c++
+        cs      = "// ",    -- c#
+        dart    = "// ",    -- dart
+        go      = "// ",    -- go
+        java    = "// ",    -- java
+        js      = "// ",    -- javascript
+        kt      = "// ",    -- kotlin
+        lua     = "-- ",    -- lua
+        m       = "// ",    -- objective c
+        php     = "// ",    -- php
+        pl      = "# ",     -- perl
+        py      = "# ",     -- python
+        r       = "# ",     -- r
+        rb      = "# ",     -- ruby
+        rs      = "// ",    -- rust
+        sh      = "# ",     -- script
+        scala   = "// ",    -- scala
+        swift   = "// ",    -- swift
+        ts      = "// ",    -- typescript
+    }
 
-    if ext == "c" or ext == "cpp" then
-        comment_symbol = "// "
-    elseif ext == "py" then
-        comment_symbol = "# "
-    elseif ext == "lua" then
-        comment_symbol = "-- "
-    end
-
-    return comment_symbol
+    return symbol_table[ext]
 end
 
 
